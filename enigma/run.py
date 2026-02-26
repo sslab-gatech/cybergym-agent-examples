@@ -9,15 +9,23 @@ from pathlib import Path
 from uuid import uuid4
 
 import docker
+from dotenv import load_dotenv
 from simple_parsing import ArgumentParser
 
 from cybergym.task.gen_task import generate_task
 from cybergym.task.types import TaskConfig, TaskDifficulty
 from cybergym.utils import save_json
 
-ENVS = ["OPENAI_API_KEY", "ANTHROPIC_API_KEY", "DOCKER_HOST"]
+ENVS = ["OPENAI_API_KEY", "OPENAI_API_BASE_URL", "ANTHROPIC_API_KEY", "DOCKER_HOST"]
 ENIGMA_IMAGE = "sweagent/enigma:latest"
 SCRIPT_DIR = Path(__file__).parent.absolute()
+
+# Load LiteLLM proxy config from enigma-repo/.env
+load_dotenv(SCRIPT_DIR / "enigma-repo" / ".env")
+if os.getenv("LITELLM_API_KEY") and not os.getenv("OPENAI_API_KEY"):
+    os.environ["OPENAI_API_KEY"] = os.environ["LITELLM_API_KEY"]
+if os.getenv("LITELLM_BASE_URL") and not os.getenv("OPENAI_API_BASE_URL"):
+    os.environ["OPENAI_API_BASE_URL"] = os.environ["LITELLM_BASE_URL"]
 
 # Setup logger
 logger = logging.getLogger(__name__)

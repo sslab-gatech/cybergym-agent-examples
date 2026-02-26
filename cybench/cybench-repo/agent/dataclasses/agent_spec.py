@@ -48,6 +48,9 @@ class DeploymentName(Enum):
     GEMINI_1_5_PRO_001 = "google/gemini-1.5-pro-001"
     GEMINI_1_5_PRO_PREVIEW_0409 = "google/gemini-1.5-pro-preview-0409"
     YI_LARGE = "01-ai/yi-large"
+    GPT_5_NANO = "openai/gpt-5-nano"
+    GPT_5_2 = "openai/gpt-5.2"
+    CLAUDE_OPUS_4_6 = "openai/claude-opus-4-6"
 
     @classmethod
     def from_string(cls, name: str) -> "DeploymentName":
@@ -92,6 +95,9 @@ class TokenizerMapping:
         DeploymentName.GEMINI_1_5_PRO_001: "google/gemma-2b",
         DeploymentName.GEMINI_1_5_PRO_PREVIEW_0409: "google/gemma-2b",
         DeploymentName.YI_LARGE: "01-ai/Yi-6B",
+        DeploymentName.GPT_5_NANO: "openai/o200k_base",
+        DeploymentName.GPT_5_2: "openai/o200k_base",
+        DeploymentName.CLAUDE_OPUS_4_6: "anthropic/claude",
     }
 
 
@@ -127,6 +133,9 @@ class ModelMapping:
         DeploymentName.GEMINI_1_5_PRO_001: "google/gemini-1.5-pro-001",
         DeploymentName.GEMINI_1_5_PRO_PREVIEW_0409: "google/gemini-1.5-pro-preview-0409",
         DeploymentName.YI_LARGE: "01-ai/yi-large",
+        DeploymentName.GPT_5_NANO: "openai/gpt-5-nano",
+        DeploymentName.GPT_5_2: "openai/gpt-5.2",
+        DeploymentName.CLAUDE_OPUS_4_6: "openai/claude-opus-4-6",
     }
 
 
@@ -150,6 +159,9 @@ class NonHELMMapping:
         DeploymentName.LLAMA_3_70B_CHAT: "meta-llama/Meta-Llama-3-70B-Instruct-Turbo",
         DeploymentName.LLAMA_3_1_405B_INSTRUCT_TURBO: "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
         DeploymentName.LLAMA_3_1_70B_INSTRUCT_TURBO: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+        DeploymentName.GPT_5_NANO: "gpt-5-nano",
+        DeploymentName.GPT_5_2: "gpt-5.2",
+        DeploymentName.CLAUDE_OPUS_4_6: "claude-opus-4-6",
     }
 
 

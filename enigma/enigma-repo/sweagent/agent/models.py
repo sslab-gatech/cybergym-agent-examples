@@ -276,6 +276,16 @@ class OpenAIModel(BaseModel):
             "cost_per_input_token": 0.1e-06,
             "cost_per_output_token": 0.4e-06,
         },
+        "claude-opus-4-6": {
+            "max_context": 200_000,
+            "cost_per_input_token": 15e-06,
+            "cost_per_output_token": 75e-06,
+        },
+        "claude-sonnet-4-6": {
+            "max_context": 200_000,
+            "cost_per_input_token": 3e-06,
+            "cost_per_output_token": 15e-06,
+        },
     }
 
     SHORTCUTS = {
@@ -1056,6 +1066,8 @@ def get_model(args: ModelArguments, commands: list[Command] | None = None):
     ):
         return OpenAIModel(args, commands)
     elif args.model_name.startswith("claude"):
+        if keys_config.get("OPENAI_API_BASE_URL", None):
+            return OpenAIModel(args, commands)
         return AnthropicModel(args, commands)
     elif args.model_name.startswith("bedrock"):
         return BedrockModel(args, commands)
